@@ -31,7 +31,7 @@ def predict_salary(salary_from=None, salary_to=None):
     return expect_salary
 
 
-def get_HeadHunter_vacancies(language, page=0):
+def get_headhunter_vacancies(language, page=0):
     area = 1
     url = "https://api.hh.ru/vacancies"
     params = {
@@ -45,7 +45,7 @@ def get_HeadHunter_vacancies(language, page=0):
     return vacancies
 
 
-def get_HeadHunter_vacancies():
+def get_headhunter_vacancies():
     programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -77,7 +77,7 @@ def get_HeadHunter_vacancies():
     return programming_language_information
 
 
-def get_SuperJob_vacancies(language, page=0):
+def get_superjob_vacancies(language, page=0):
     token = os.environ['TOKEN']
     headers = {'X-Api-App-Id': token}
     params = {'town': 4, 'keyword': f'Программист {language}', 'page': page}
@@ -89,7 +89,7 @@ def get_SuperJob_vacancies(language, page=0):
     return vacancies
 
 
-def get_SuperJob_vacancies():
+def get_superjob_vacancies():
     programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -121,9 +121,9 @@ def get_SuperJob_vacancies():
 def main():
     load_dotenv()
     title = 'SuperJob_Moscow'
-    print(get_table(title, get_SuperJob_vacancies()))
+    print(get_table(title, get_superjob_vacancies()))
     title = 'HeadHunter_Moscow'
-    print(get_table(title, get_HeadHunter_vacancies()))
+    print(get_table(title, get_headhunter_vacancies()))
 
 
 if __name__ == "__main__":
