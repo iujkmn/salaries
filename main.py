@@ -77,8 +77,7 @@ def get_headhunter_vacancies():
     return programming_language_information
 
 
-def get_superjob_vacancies(language, page=0):
-    token = os.environ['TOKEN']
+def get_superjob_vacancies(token, language, page=0):
     headers = {'X-Api-App-Id': token}
     params = {'town': 4, 'keyword': f'Программист {language}', 'page': page}
     response = requests.get('https://api.superjob.ru/2.0/vacancies/',
@@ -119,6 +118,7 @@ def get_superjob_vacancies():
 
 
 def main():
+    token = os.environ['TOKEN']
     load_dotenv()
     title = 'SuperJob_Moscow'
     print(get_table(title, get_superjob_vacancies()))
