@@ -22,7 +22,7 @@ python main.py
 
 Пример содержания файла `.env`:
 ```
-TOKEN = "token"
+SUPERJOB_TOKEN = "token"
 ```
 Получить токен `TOKEN` можно на сайте [SuperJob](https://www.superjob.ru).
 ## Пример запуска скрипта
