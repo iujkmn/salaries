@@ -51,7 +51,6 @@ def get_headhunter_vacancies():
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
             "Swift"
     ]:
-        vacancies_processed = 0
         all_salaries = []
         for page in count(0):
             vacancies = get_HeadHunter_vacancies(language, page=page)
@@ -63,9 +62,8 @@ def get_headhunter_vacancies():
                     predicted_salary = predict_salary(
                         vacancy['salary'].get('from'),
                         vacancy['salary'].get('to'))
-                    if predicted_salary:
-                        vacancies_processed += 1
-                        all_salaries.append(predicted_salary)
+                    vacancies_processed = len(all_salaries)
+                    all_salaries.append(predicted_salary)
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
@@ -95,7 +93,6 @@ def get_superjob_vacancies():
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
             "Swift"
     ]:
-        vacancies_processed = 0
         all_salaries = []
         for page in count(0):
             vacancies = get_SuperJob_vacancies(language, page=page)
@@ -104,9 +101,8 @@ def get_superjob_vacancies():
             for vacancy in vacancies['objects']:
                 predicted_salary = predict_salary(vacancy["payment_from"],
                                                   vacancy["payment_to"])
-                if predicted_salary:
-                    vacancies_processed += 1
-                    all_salaries.append(predicted_salary)
+                vacancies_processed = len(all_salaries)
+                all_salaries.append(predicted_salary)
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
