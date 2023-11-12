@@ -54,10 +54,10 @@ def get_headhunter_vacancies():
         vacancies_processed = 0
         all_salaries = []
         for page in count(0):
-            vacancies_json = get_HeadHunter_vacancies(language, page=page)
-            if page >= vacancies_json['pages'] - 1:
+            vacancies = get_HeadHunter_vacancies(language, page=page)
+            if page >= vacancies['pages'] - 1:
                 break
-            for vacancy in vacancies_json['items']:
+            for vacancy in vacancies['items']:
                 salary = vacancy.get('salary')
                 if salary and salary['currency'] == "RUR":
                     predicted_salary = predict_salary(
@@ -70,7 +70,7 @@ def get_headhunter_vacancies():
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
         programming_language_information[language] = {
-            "vacancies_found": vacancies_json['found'],
+            "vacancies_found": vacancies['found'],
             "vacancies_processed": vacancies_processed,
             "average_salary": average_salary
         }
@@ -98,10 +98,10 @@ def get_superjob_vacancies():
         vacancies_processed = 0
         all_salaries = []
         for page in count(0):
-            vacancies_json = get_SuperJob_vacancies(language, page=page)
-            if not vacancies_json['objects']:
+            vacancies = get_SuperJob_vacancies(language, page=page)
+            if not vacancies['objects']:
                 break
-            for vacancy in vacancies_json['objects']:
+            for vacancy in vacancies['objects']:
                 predicted_salary = predict_salary(vacancy["payment_from"],
                                                   vacancy["payment_to"])
                 if predicted_salary:
@@ -111,7 +111,7 @@ def get_superjob_vacancies():
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
         programming_language_information[language] = {
-            "vacancies_found": vacancies_json['total'],
+            "vacancies_found": vacancies['total'],
             "vacancies_processed": vacancies_processed,
             "average_salary": average_salary
         }
