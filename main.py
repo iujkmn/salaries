@@ -45,7 +45,7 @@ def get_headhunter_vacancies(language, page=0):
     return vacancies
 
 
-def get_headhunter_vacancies():
+def get_headhunter_information():
     programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -53,7 +53,7 @@ def get_headhunter_vacancies():
     ]:
         all_salaries = []
         for page in count(0):
-            vacancies = get_HeadHunter_vacancies(language, page=page)
+            vacancies = get_headhunter_vacancies(language, page=page)
             if page >= vacancies['pages'] - 1:
                 break
             for vacancy in vacancies['items']:
@@ -62,8 +62,10 @@ def get_headhunter_vacancies():
                     predicted_salary = predict_salary(
                         vacancy['salary'].get('from'),
                         vacancy['salary'].get('to'))
-                    vacancies_processed = len(all_salaries)
+                    if predicted_salary:
+                        all_salaries.append(predicted_salary)
                     all_salaries.append(predicted_salary)
+            vacancies_processed = len(all_salaries)
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
@@ -87,7 +89,7 @@ def get_superjob_vacancies(token, language, page=0):
     return vacancies
 
 
-def get_superjob_vacancies():
+def get_superjob_information(token):
     programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -95,14 +97,15 @@ def get_superjob_vacancies():
     ]:
         all_salaries = []
         for page in count(0):
-            vacancies = get_SuperJob_vacancies(language, page=page)
+            vacancies = get_superjob_vacancies(token, language, page=page)
             if not vacancies['objects']:
                 break
             for vacancy in vacancies['objects']:
                 predicted_salary = predict_salary(vacancy["payment_from"],
                                                   vacancy["payment_to"])
-                vacancies_processed = len(all_salaries)
-                all_salaries.append(predicted_salary)
+                if predicted_salary:
+                    all_salaries.append(predicted_salary)
+            vacancies_processed = len(all_salaries)
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
@@ -118,9 +121,9 @@ def main():
     token = os.environ['SUPERJOB_TOKEN']
     load_dotenv()
     title = 'SuperJob_Moscow'
-    print(get_table(title, get_superjob_vacancies()))
+    print(get_table(title, get_superjob_information(token)))
     title = 'HeadHunter_Moscow'
-    print(get_table(title, get_headhunter_vacancies()))
+    print(get_table(title, get_headhunter_information()))
 
 
 if __name__ == "__main__":
