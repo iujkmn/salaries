@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 
-def table(title, information):
+def get_table(title, information):
     table_data = [[
         'Язык программирования', 'Вакансий найдено', 'Вакансий обработано',
         'Средняя зарплата'
@@ -45,7 +45,7 @@ def get_HeadHunter_vacancies(language, page=0):
     return vacancies
 
 
-def HeadHunter_vacancies():
+def get_HeadHunter_vacancies():
     information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -89,8 +89,7 @@ def get_SuperJob_vacancies(language, page=0):
     return vacancies
 
 
-def SuperJob_vacancies():
-
+def get_SuperJob_vacancies():
     information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -122,9 +121,9 @@ def SuperJob_vacancies():
 def main():
     load_dotenv()
     title = 'SuperJob_Moscow'
-    print(table(title, SuperJob_vacancies()))
+    print(get_table(title, get_SuperJob_vacancies()))
     title = 'HeadHunter_Moscow'
-    print(table(title, HeadHunter_vacancies()))
+    print(get_table(title, get_HeadHunter_vacancies()))
 
 
 if __name__ == "__main__":
