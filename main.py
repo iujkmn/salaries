@@ -118,7 +118,7 @@ def get_superjob_vacancies():
 
 
 def main():
-    token = os.environ['TOKEN']
+    token = os.environ['SUPERJOB_TOKEN']
     load_dotenv()
     title = 'SuperJob_Moscow'
     print(get_table(title, get_superjob_vacancies()))
