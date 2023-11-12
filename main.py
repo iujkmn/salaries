@@ -5,12 +5,12 @@ import os
 from dotenv import load_dotenv
 
 
-def get_table(title, information):
+def get_table(title, programming_language_information):
     table_data = [[
         'Язык программирования', 'Вакансий найдено', 'Вакансий обработано',
         'Средняя зарплата'
     ]]
-    for language, vacancy in information.items():
+    for language, vacancy in programming_language_information.items():
         table_data.append([
             language, vacancy['vacancies_found'],
             vacancy['vacancies_processed'], vacancy["average_salary"]
@@ -46,7 +46,7 @@ def get_HeadHunter_vacancies(language, page=0):
 
 
 def get_HeadHunter_vacancies():
-    information = {}
+    programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
             "Swift"
@@ -69,12 +69,12 @@ def get_HeadHunter_vacancies():
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
-        information[language] = {
+        programming_language_information[language] = {
             "vacancies_found": vacancies_json['found'],
             "vacancies_processed": vacancies_processed,
             "average_salary": average_salary
         }
-    return information
+    return programming_language_information
 
 
 def get_SuperJob_vacancies(language, page=0):
@@ -90,7 +90,7 @@ def get_SuperJob_vacancies(language, page=0):
 
 
 def get_SuperJob_vacancies():
-    information = {}
+    programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
             "Swift"
@@ -110,12 +110,12 @@ def get_SuperJob_vacancies():
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
-        information[language] = {
+        programming_language_information[language] = {
             "vacancies_found": vacancies_json['total'],
             "vacancies_processed": vacancies_processed,
             "average_salary": average_salary
         }
-    return information
+    return programming_language_information
 
 
 def main():
