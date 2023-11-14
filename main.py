@@ -65,7 +65,7 @@ def get_headhunter():
                     if predicted_salary:
                         all_salaries.append(predicted_salary)
                     all_salaries.append(predicted_salary)
-            vacancies_processed = len(all_salaries)
+        vacancies_processed = len(all_salaries)
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
@@ -105,7 +105,7 @@ def get_superjob(token):
                                                   vacancy["payment_to"])
                 if predicted_salary:
                     all_salaries.append(predicted_salary)
-            vacancies_processed = len(all_salaries)
+        vacancies_processed = len(all_salaries)
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
