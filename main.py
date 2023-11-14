@@ -6,11 +6,11 @@ from dotenv import load_dotenv
 
 
 def get_table(title, programming_language_information):
-    table_information = [[
+    table = [[
         'Язык программирования', 'Вакансий найдено', 'Вакансий обработано',
         'Средняя зарплата'
     ]]
-    for language, vacancy in programming_language_information.items():
+    for language, vacancy in programming_language.items():
         table_information.append([
             language, vacancy['vacancies_found'],
             vacancy['vacancies_processed'], vacancy["average_salary"]
@@ -46,7 +46,7 @@ def get_headhunter_vacancies(language, page=0):
 
 
 def get_headhunter():
-    programming_language_information = {}
+    programming_language = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
             "Swift"
@@ -90,7 +90,7 @@ def get_superjob_vacancies(token, language, page=0):
 
 
 def get_superjob(token):
-    programming_language_information = {}
+    programming_language = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
             "Swift"
