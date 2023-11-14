@@ -32,12 +32,12 @@ def predict_salary(salary_from=None, salary_to=None):
 
 
 def get_headhunter_vacancies(language, page=0):
-    Moscow = 1
+    moscow = 1
     url = "https://api.hh.ru/vacancies"
     params = {
         "text": language,
         "page": page,
-        "area": Moscow,
+        "area": moscow,
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -79,8 +79,8 @@ def get_headhunter():
 
 def get_superjob_vacancies(token, language, page=0):
     headers = {'X-Api-App-Id': token}
-    Moscow = 4
-    params = {'town': Moscow, 'keyword': f'Программист {language}', 'page': page}
+    moscow = 4
+    params = {'town': moscow, 'keyword': f'Программист {language}', 'page': page}
     response = requests.get('https://api.superjob.ru/2.0/vacancies/',
                             headers=headers,
                             params=params)
