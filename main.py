@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 
-def get_table(title, programming_language_information):
+def get_table(title, programming_language):
     table = [[
         'Язык программирования', 'Вакансий найдено', 'Вакансий обработано',
         'Средняя зарплата'
@@ -15,7 +15,7 @@ def get_table(title, programming_language_information):
             language, vacancy['vacancies_found'],
             vacancy['vacancies_processed'], vacancy["average_salary"]
         ])
-    table = AsciiTable(table_information, title)
+    table = AsciiTable(table, title)
     return table.table
 
 
@@ -69,12 +69,12 @@ def get_headhunter():
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
-        programming_language_information[language] = {
+        programming_language[language] = {
             "vacancies_found": vacancies['found'],
             "vacancies_processed": vacancies_processed,
             "average_salary": average_salary
         }
-    return programming_language_information
+    return programming_language
 
 
 def get_superjob_vacancies(token, language, page=0):
@@ -114,7 +114,7 @@ def get_superjob(token):
             "vacancies_processed": vacancies_processed,
             "average_salary": average_salary
         }
-    return programming_language_information
+    return programming_language
 
 
 def main():
