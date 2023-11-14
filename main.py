@@ -45,7 +45,7 @@ def get_headhunter_vacancies(language, page=0):
     return vacancies
 
 
-def get_headhunter_information():
+def get_headhunter():
     programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -89,7 +89,7 @@ def get_superjob_vacancies(token, language, page=0):
     return vacancies
 
 
-def get_superjob_information(token):
+def get_superjob(token):
     programming_language_information = {}
     for language in [
             "Python", "Java", "Javascript", "Ruby", "PHP", "C++", "TypeScript",
@@ -121,9 +121,9 @@ def main():
     token = os.environ['SUPERJOB_TOKEN']
     load_dotenv()
     title = 'SuperJob_Moscow'
-    print(get_table(title, get_superjob_information(token)))
+    print(get_table(title, get_superjob(token)))
     title = 'HeadHunter_Moscow'
-    print(get_table(title, get_headhunter_information()))
+    print(get_table(title, get_headhunter()))
 
 
 if __name__ == "__main__":
