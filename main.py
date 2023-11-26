@@ -6,16 +6,16 @@ from dotenv import load_dotenv
 
 
 def get_table(title, programming_language):
-    table = [[
+    salary_table = [[
         'Язык программирования', 'Вакансий найдено', 'Вакансий обработано',
         'Средняя зарплата'
     ]]
     for language, vacancy in programming_language.items():
-        table_information.append([
+        salary_table.append([
             language, vacancy['vacancies_found'],
             vacancy['vacancies_processed'], vacancy["average_salary"]
         ])
-    table = AsciiTable(table, title)
+    table = AsciiTable(salary_table, title)
     return table.table
 
 
