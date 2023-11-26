@@ -109,7 +109,7 @@ def get_superjob_data(token):
         average_salary = None
         if all_salaries:
             average_salary = int(sum(all_salaries) / len(all_salaries))
-        programming_language_information[language] = {
+        programming_language[language] = {
             "vacancies_found": vacancies['total'],
             "vacancies_processed": vacancies_processed,
             "average_salary": average_salary
